@@ -1,48 +1,138 @@
-﻿# Assignment-1-PS-Rana-sir
+# Assignment-1 – TOPSIS Implementation
 
-**Author:** Vanshika Saini
+**Author:** Vanshika Saini  
+**Roll No:** 102303735  
 
-**Roll No:** 102303735
+---
 
-## Project
-This repository contains a Python implementation of the TOPSIS multi-criteria decision-making method.
+##  Project Description
 
-## Key files
-- `topsis/topsis.py` — main script (CLI: `topsis <inputfile> <weights> <impacts> <outputfile>`)
-- `data.csv` — sample input data (first column identifiers, remaining columns are numeric criteria)
-- `result.csv` — output produced by the example run
-- `setup.py` — package metadata
+This repository contains a Python implementation of the **TOPSIS (Technique for Order Preference by Similarity to Ideal Solution)** multi-criteria decision-making method.  
+The solution is implemented as a **command-line program** as required in Assignment-1.
 
-## Requirements
-- Python 3.8+
-- `pandas`, `numpy`
+---
 
-## Quick start (Windows / PowerShell)
-1. Create and activate a virtual environment (optional but recommended):
+##  Repository Structure
 
 ```
-python -m venv .venv
-& .\.venv\Scripts\Activate.ps1
+.
+├── topsis/
+│   └── topsis.py        # Main TOPSIS implementation (CLI)
+├── data.csv             # Sample input file
+├── result.csv           # Output file
+├── setup.py             # Package configuration
+├── README.md            # Documentation
 ```
 
-2. Install dependencies:
+---
 
-```
+##  Requirements
+
+- Python **3.8 or above**
+- Required libraries:
+  - `numpy`
+  - `pandas`
+
+---
+
+##  How to Run (Windows / PowerShell)
+
+### 1️⃣ Install required libraries
+
+```bash
 pip install pandas numpy
 ```
 
-3. Run TOPSIS on the sample data (example uses equal weights and all positive impacts):
+---
+
+### 2️⃣ Run TOPSIS from command line
+
+```bash
+python topsis/topsis.py data.csv "1,1,1,1" "+,+,+,+" result.csv
+```
+
+---
+
+### 3️⃣ Output
+
+After execution, the result will be saved in:
 
 ```
-python topsis/topsis.py data.csv "1,1,1,1,1" "+,+,+,+,+" result.csv
+result.csv
 ```
 
-After the run, see the results in [result.csv](result.csv).
+The output file contains:
+- **Topsis Score**
+- **Rank** (higher score = better rank)
 
-## Notes
-- Input CSV must have at least three columns. The first column is an identifier (string), the rest must be numeric criteria.
-- `weights` is a comma-separated list of numeric weights (one per criterion column).
-- `impacts` is a comma-separated list of `+` (benefit) or `-` (cost) symbols (one per criterion column).
+---
 
-If you want, I can commit other files (e.g., `result.csv`) or create a small frontend to view `result.csv`.
+## ▶️ Running in Google Colab (Testing)
+
+To run this project in **Google Colab**:
+
+1. Upload all files (`topsis.py`, `data.csv`)
+2. Install dependencies:
+```python
+!pip install pandas numpy
+```
+3. Run using:
+```python
+!python topsis/topsis.py data.csv "1,1,1,1" "+,+,+,+" result.csv
+```
+
+---
+
+## 📑 Input File Format
+
+- Input must be a **CSV file**
+- Minimum **three columns**
+- **First column**: Identifier (string)
+- **Remaining columns**: Numeric criteria values only
+
+Example:
+
+```csv
+Option,C1,C2,C3
+A,250,16,12
+B,200,12,8
+C,300,18,11
+```
+
+---
+
+## 🧮 Parameters Explanation
+
+- **Weights**  
+  Comma-separated numeric values  
+  Example:
+  ```
+  1,1,1,1
+  ```
+
+- **Impacts**  
+  Comma-separated symbols  
+  - `+` → Benefit criterion  
+  - `-` → Cost criterion  
+
+  Example:
+  ```
+  +,+,+,+
+  ```
+
+---
+
+##  Validation Rules
+
+- Number of weights = number of criteria columns
+- Number of impacts = number of criteria columns
+- Impacts must be either `+` or `-`
+- From the second column onward, values must be numeric
+
+---
+
+##  Conclusion
+
+This project satisfies all requirements of **Assignment-1** by providing a validated, command-line-based implementation of the TOPSIS decision-making method.
+
 
